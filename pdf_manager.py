@@ -4,6 +4,8 @@ from langchain_text_splitters import CharacterTextSplitter
 
 from unstructured.partition.pdf import partition_pdf
 
+import os 
+
 
 class Data_Loader():
 
@@ -13,21 +15,22 @@ class Data_Loader():
 
     
 
-    def extract_pdf_elements(self, path, fname):
+    def extract_pdf_elements(self):
         """
         Extract images, tables, and chunk text from a PDF file.
         path: File path, which is used to dump images (.jpg)
         fname: File name
         """
+        current_directory= os. getcwd()+"/"
         return partition_pdf(
-            filename=path + fname,
+            filename=current_directory+ self.fname,
             extract_images_in_pdf=False,
             infer_table_structure=True,
             chunking_strategy="by_title",
             max_characters=4000,
             new_after_n_chars=3800,
             combine_text_under_n_chars=2000,
-            image_output_dir_path=path,
+            image_output_dir_path=current_directory
         )
     
     def categorize_elements(self, raw_pdf_elements):
@@ -46,7 +49,20 @@ class Data_Loader():
         return texts, tables
 
 
+    def get_text_from_pdf(self):
+        
+        raw_pdf_elements = data_loader.extract_pdf_elements()
 
+        # Get text, tables
+        texts, tables = data_loader.categorize_elements(raw_pdf_elements)
+
+        # Optional: Enforce a specific token size for texts
+        text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
+            chunk_size=1000, chunk_overlap=0
+        )
+        joined_texts = " ".join(texts)
+        texts_tokens = text_splitter.split_text(joined_texts)
+        return texts_tokens 
         
 
 if __name__=="__main__":
@@ -57,17 +73,20 @@ if __name__=="__main__":
 
     data_loader=Data_Loader(fpath, fname)
     # Get elements
-    raw_pdf_elements = data_loader.extract_pdf_elements(fpath, fname)
+    # raw_pdf_elements = data_loader.extract_pdf_elements(fpath, fname)
 
-    # Get text, tables
-    texts, tables = data_loader.categorize_elements(raw_pdf_elements)
+    # # Get text, tables
+    # texts, tables = data_loader.categorize_elements(raw_pdf_elements)
 
-    # Optional: Enforce a specific token size for texts
-    text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
-        chunk_size=1000, chunk_overlap=0
-    )
-    joined_texts = " ".join(texts)
-    texts_4k_token = text_splitter.split_text(joined_texts)
+    # # Optional: Enforce a specific token size for texts
+    # text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
+    #     chunk_size=1000, chunk_overlap=0
+    # )
+    # joined_texts = " ".join(texts)
+    # texts_4k_token = text_splitter.split_text(joined_texts)
 
-    print(texts_4k_token)
+    texts_tokens=data_loader.get_text_from_pdf()
+
+
+    print(texts_tokens)
 

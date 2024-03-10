@@ -9,8 +9,7 @@ import os
 
 class Data_Loader():
 
-    def __init__(self, path, file_name):
-        self.path=path 
+    def __init__(self, file_name):
         self.fname=file_name
 
     
@@ -51,10 +50,10 @@ class Data_Loader():
 
     def get_text_from_pdf(self):
         
-        raw_pdf_elements = data_loader.extract_pdf_elements()
+        raw_pdf_elements = self.extract_pdf_elements()
 
         # Get text, tables
-        texts, tables = data_loader.categorize_elements(raw_pdf_elements)
+        texts, tables = self.categorize_elements(raw_pdf_elements)
 
         # Optional: Enforce a specific token size for texts
         text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
@@ -65,28 +64,28 @@ class Data_Loader():
         return texts_tokens 
         
 
-if __name__=="__main__":
+# if __name__=="__main__":
 
-    print("I am here")
-    fpath = "/home/rayhanul/Documents/GitHub/COMS-579/"
-    fname = "test_pdf.pdf"
+#     print("I am here")
+#     fpath = "/home/rayhanul/Documents/GitHub/COMS-579/"
+#     fname = "test_pdf.pdf"
 
-    data_loader=Data_Loader(fpath, fname)
-    # Get elements
-    # raw_pdf_elements = data_loader.extract_pdf_elements(fpath, fname)
+#     data_loader=Data_Loader(fpath, fname)
+#     # Get elements
+#     # raw_pdf_elements = data_loader.extract_pdf_elements(fpath, fname)
 
-    # # Get text, tables
-    # texts, tables = data_loader.categorize_elements(raw_pdf_elements)
+#     # # Get text, tables
+#     # texts, tables = data_loader.categorize_elements(raw_pdf_elements)
 
-    # # Optional: Enforce a specific token size for texts
-    # text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
-    #     chunk_size=1000, chunk_overlap=0
-    # )
-    # joined_texts = " ".join(texts)
-    # texts_4k_token = text_splitter.split_text(joined_texts)
+#     # # Optional: Enforce a specific token size for texts
+#     # text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
+#     #     chunk_size=1000, chunk_overlap=0
+#     # )
+#     # joined_texts = " ".join(texts)
+#     # texts_4k_token = text_splitter.split_text(joined_texts)
 
-    texts_tokens=data_loader.get_text_from_pdf()
+#     texts_tokens=data_loader.get_text_from_pdf()
 
 
-    print(texts_tokens)
+#     print(texts_tokens)
 

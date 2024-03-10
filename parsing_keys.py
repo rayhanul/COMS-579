@@ -12,7 +12,7 @@ class Key_parser():
         with open(self.key_file) as myfile:
             for line in myfile:
                 key_name, key_value = line.partition("=")[::2]
-                my_keys[key_name.strip()] = key_value
+                my_keys[key_name.strip()] = key_value.strip()
         
         return my_keys
 

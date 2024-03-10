@@ -19,7 +19,7 @@ class Text_embedder():
         self.embed=self.get_embedding()
         self.pc = Pinecone(api_key=self.keys["_PINECONE_KEY_"])
         self.spec=ServerlessSpec(cloud="aws", region="us-west-2")
-        self.index_name = 'langchain-retrieval-augmentation-1'
+        self.index_name = 'langchain-retrieval-augmentation-3'
         self.batch_limit = 100
         self.tokenizer = tiktoken.get_encoding('cl100k_base')
         self.text_splitter=self.get_text_splitter()
@@ -81,16 +81,16 @@ class Text_embedder():
 
         for i, record in enumerate(tqdm(data)):
             # first get metadata fields for this record
-            # metadata = {
-            #     'wiki-id': str(record['id']),
-            #     'source': record['url'],
-            #     'title': record['title']
-            # }
+            metadata = {
+                # 'id': str(i),
+                'source': record,
+                # 'title': record['title']
+            }
             # now we create chunks from the record text
             record_texts = self.text_splitter.split_text(record)
             # create individual metadata dicts for each chunk
             record_metadatas = [{
-                "chunk": j, "text": text
+                "chunk": j, "text": text, **metadata
             } for j, text in enumerate(record_texts)]
             # append these to current batches
             texts.extend(record_texts)
@@ -99,15 +99,15 @@ class Text_embedder():
             if len(texts) >= self.batch_limit:
                 ids = [str(uuid4()) for _ in range(len(texts))]
                 embeds = self.embed.embed_documents(texts)
-                index.upsert(vectors=zip(ids,embeds))
+                index.upsert(vectors=zip(ids,embeds, metadatas))
                 texts = []
 
         if len(texts) > 0:
             ids = [str(uuid4()) for _ in range(len(texts))]
             embeds = self.embed.embed_documents(texts)
-            index.upsert(vectors=zip(ids, embeds))
+            index.upsert(vectors=zip(ids, embeds, metadatas))
 
-        return self.index_name
+        return index, self.index_name, self.embed
 
 
 

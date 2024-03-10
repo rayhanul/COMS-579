@@ -2,6 +2,7 @@
 from pdf_manager import *;
 from embedder import *; 
 from parsing_keys import *;
+from rag_manager import *;
 
 
 
@@ -9,8 +10,8 @@ from parsing_keys import *;
 
 if __name__=="__main__":
 
-    file_name="test.pdf"
-
+    file_name="test_pdf.pdf"
+    query="what is fuzz testing"
     key_manager= Key_parser()
     my_keys=key_manager.parsing_keys()
 
@@ -19,9 +20,21 @@ if __name__=="__main__":
 
     text_embedder=Text_embedder(text=text_tokens, keys=my_keys)
 
-    index_name=text_embedder.get_indexing(text_tokens)
+    index, index_name, embed =text_embedder.get_indexing(text_tokens)
 
-    
+
+    rag_manager=Rag_Manager(my_keys, index, embed )
+
+    ans= rag_manager.answer_query(query)
+
+    print(ans) 
+
+
+
+
+
+
+
 
 
 

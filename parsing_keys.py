@@ -20,11 +20,11 @@ class Key_parser():
 
 
 
-if __name__=="__main__":
+# if __name__=="__main__":
 
-    key_parser=Key_parser()
+#     key_parser=Key_parser()
 
-    my_keys=key_parser.parsing_keys()
+#     my_keys=key_parser.parsing_keys()
 
-    print(my_keys)
+#     print(my_keys)
 

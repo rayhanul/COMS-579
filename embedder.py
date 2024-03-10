@@ -19,7 +19,7 @@ class Text_embedder():
         self.embed=self.get_embedding()
         self.pc = Pinecone(api_key=self.keys["_PINECONE_KEY_"])
         self.spec=ServerlessSpec(cloud="aws", region="us-west-2")
-        self.index_name = 'langchain-retrieval-augmentation-3'
+        self.index_name = 'langchain-retrieval-augmentation'
         self.batch_limit = 100
         self.tokenizer = tiktoken.get_encoding('cl100k_base')
         self.text_splitter=self.get_text_splitter()
@@ -111,6 +111,8 @@ class Text_embedder():
 
 
 
+    def remove_index(self, index_name):
+        self.pc.delete_index(index_name)
 
 
         

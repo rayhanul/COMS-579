@@ -10,8 +10,8 @@ from rag_manager import *;
 
 if __name__=="__main__":
 
-    file_name="test_pdf.pdf"
-    query="what is fuzz testing"
+    file_name="Project-Boosting.pdf"
+    query="what is boosting?"
     key_manager= Key_parser()
     my_keys=key_manager.parsing_keys()
 
@@ -26,6 +26,8 @@ if __name__=="__main__":
     rag_manager=Rag_Manager(my_keys, index, embed )
 
     ans= rag_manager.answer_query(query)
+
+    text_embedder.remove_index(index_name)
 
     print(ans) 
 

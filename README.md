@@ -20,5 +20,7 @@ if any package does not get installed, please run the following commands:
 - Open a Linux Terminal
 - Clone the repo: `git clone https://github.com/rayhanul/COMS-579.git`
 - Go to inside `COMS-579`
-- Run command `python upload.py --pdf_file file_name`
+- Run command `python upload.py --pdf_file file_name`, where file_name is any pdf file. 
+
+## Query 
 

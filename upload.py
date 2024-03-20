@@ -23,14 +23,11 @@ if __name__=="__main__":
         help="file to upload...",
         required=True
     )
-
-    sys.argv=[os.path.basename(__file__), "--pdf_file=~/Documents/IELTS.pdf"]
-
-
+    sys.argv=[os.path.basename(__file__), "--pdf_file=test_pdf.pdf"]
     args = parser.parse_args()
 
     if args.pdf_file is None or args.pdf_file.strip() == '':
-        print("Error: No file provided. Please specify a file with --file.")
+        print("Error: No file provided. Please specify a file with --pdf_file.")
         sys.exit(1)
 
     if not args.pdf_file.lower().endswith('.pdf'):
@@ -45,6 +42,8 @@ if __name__=="__main__":
 
     pdf_manager= Data_Loader(file_name)
     text_tokens=pdf_manager.get_text_from_pdf()
+
+    text_tokens=[ text.replace("\n", " ") for text in text_tokens]
 
     text_embedder=Text_embedder(text=text_tokens, keys=my_keys)
 

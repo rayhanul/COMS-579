@@ -48,3 +48,4 @@ if __name__=="__main__":
     text_embedder=Text_embedder(text=text_tokens, keys=my_keys)
 
     index, index_name, embed =text_embedder.get_indexing(text_tokens)
+

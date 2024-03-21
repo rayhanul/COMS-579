@@ -3,6 +3,7 @@ from langchain_text_splitters import CharacterTextSplitter
 # from langchain.text_splitter import CharacterTextSplitter
 
 from unstructured.partition.pdf import partition_pdf
+from langchain_openai import OpenAIEmbeddings
 
 import os 
 
@@ -22,7 +23,7 @@ class Data_Loader():
         """
         current_directory= os. getcwd()+"/"
         return partition_pdf(
-            filename=current_directory+ self.fname,
+            filename=self.fname,
             extract_images_in_pdf=False,
             infer_table_structure=True,
             chunking_strategy="by_title",
@@ -57,7 +58,7 @@ class Data_Loader():
 
         # Optional: Enforce a specific token size for texts
         text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
-            chunk_size=1000, chunk_overlap=0
+            chunk_size=1000, chunk_overlap=20
         )
         joined_texts = " ".join(texts)
         texts_tokens = text_splitter.split_text(joined_texts)

@@ -8,7 +8,7 @@
 
 
 ## Experimental setup Instalation of the required packages
-- `conda create -n "nlp" python=3.10`
+- `conda create -name nlp python==3.10`
 - `conda activate nlp`
 - `pip install -r requirements.txt`
 if any package does not get installed, please run the following commands: 

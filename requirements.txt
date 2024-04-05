@@ -3,10 +3,10 @@ langchain-openai
 openai
 chromadb
 langchain-experimental
-"unstructured[all-docs]"
 pillow
 pydantic
 lxml
 pillow
 matplotlib
 tiktoken
+unstructured[all-docs]

@@ -22,6 +22,6 @@
 ## Upload a pdf file
 
 - Run command `python upload.py --pdf_file file_name`, where file_name is any pdf file. 
-
+- For Demo, visit: https://youtu.be/ZFAqBrj08CQ 
 ## Query 
 

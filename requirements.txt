@@ -10,3 +10,4 @@ pillow
 matplotlib
 tiktoken
 unstructured[all-docs]
+pinecone-client

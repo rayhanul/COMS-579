@@ -14,6 +14,7 @@
 if any package does not get installed, please run the following commands: 
 
 `pip install -U langchain openai chromadb langchain-experimental`
+
 `pip install "unstructured[all-docs]" pillow pydantic lxml pillow matplotlib chromadb tiktoken`
 
 ## Upload a pdf file

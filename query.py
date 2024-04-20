@@ -1,4 +1,5 @@
-
+import argparse
+import sys 
 from pdf_manager import *;
 from embedder import *; 
 from parsing_keys import *;
@@ -10,26 +11,48 @@ from rag_manager import *;
 
 if __name__=="__main__":
 
-    file_name=""
-    # query="what is Renyi differnetial privacy?"
-    # key_manager= Key_parser()
-    # my_keys=key_manager.parsing_keys()
 
-    # pdf_manager= Data_Loader(file_name)
-    # text_tokens=pdf_manager.get_text_from_pdf()
+    
 
-    # text_embedder=Text_embedder(text=text_tokens, keys=my_keys)
+    parser = argparse.ArgumentParser(
+        description="COMS 579 Project",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
 
-    # index, index_name, embed =text_embedder.get_indexing(text_tokens)
+    parser.add_argument(
+        "--question",
+        type=str,
+        help="Question...",
+        required=True
+    )
+
+    # sys.argv=[os.path.basename(__file__), "--pdf_file=~/Documents/"]
 
 
-    # rag_manager=Rag_Manager(my_keys, index, embed )
+    args = parser.parse_args()
 
-    # ans= rag_manager.answer_query(query)
+    if args.question is None or args.question.strip() == '':
+        print("Error: No Question provided. Please ask a question.")
+        sys.exit(1)
 
-    # # text_embedder.remove_index(index_name)
+    question=args.question
+        
 
-    # print(ans) 
+    key_manager= Key_parser()
+    my_keys=key_manager.parsing_keys()
+
+
+
+
+    rag_manager=Rag_Manager(my_keys )
+
+    ans= rag_manager.answer_query(question)
+
+
+
+    print(ans["answer"]) 
+
+
 
 
 

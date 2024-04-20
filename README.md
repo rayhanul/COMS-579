@@ -23,5 +23,12 @@
 
 - Run command `python upload.py --pdf_file file_name`, where file_name is any pdf file. 
 - For Demo, visit: https://youtu.be/ZFAqBrj08CQ 
+
+
+
 ## Query 
 
+- Run command `python query.py --question query`, where query is any question. 
+- For Demo, visit: https://youtu.be/ZFAqBrj08CQ 
+
+For example, when I ask "what is fuzzing? it answer: Fuzzing usually refers to automated test input generation for exposing potential software bugs or security vulnerabilities. It is a technique used to identify vulnerabilities in software by providing random or invalid data as input to the system. 

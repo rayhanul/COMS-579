@@ -8,8 +8,6 @@ from pdf_manager import *;
 from embedder import *; 
 from parsing_keys import *;
 
-
-
 if __name__=="__main__":
 
     parser = argparse.ArgumentParser(
@@ -23,7 +21,7 @@ if __name__=="__main__":
         help="file to upload...",
         required=True
     )
-    sys.argv=[os.path.basename(__file__), "--pdf_file=test_pdf.pdf"]
+    # sys.argv=[os.path.basename(__file__), "--pdf_file=test_pdf.pdf"]
     args = parser.parse_args()
 
     if args.pdf_file is None or args.pdf_file.strip() == '':

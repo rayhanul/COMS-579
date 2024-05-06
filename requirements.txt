@@ -11,3 +11,7 @@ matplotlib
 tiktoken
 unstructured[all-docs]
 pinecone-client
+funix 
+fitz 
+IPython 
+PyMuPDF 

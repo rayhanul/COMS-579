@@ -7,7 +7,7 @@ from rag_manager import *;
 
 @funix.funix(
   argument_labels={
-    "x": "The number to be squared"
+    "query": "What's on your mind?"
   }
 )
 

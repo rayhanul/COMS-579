@@ -34,16 +34,6 @@ def Ask_Question(query: str) -> str:
     return ans["answer"]
 
 
-# @funix.funix(
-#   argument_labels={
-#     "x": "The number to be squared"
-#   }
-# )
-
-# def Index_a_New_File(x: int) -> int:
-#     return x * x
-
-
 @funix.funix(
     title="Index a New File",
     print_to_web=True,

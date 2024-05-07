@@ -4,20 +4,39 @@ import fitz
 import ipywidgets
 from typing import List;
 from funix.widget.builtin import BytesFile;
-
+import time 
 
 from pdf_manager import *;
 from embedder import *; 
 from parsing_keys import *;
 from rag_manager import *;
 
+
+
+messages= []
+
+
+
 @funix.funix(
+  print_to_web=True,
+  direction="column-reverse",
   argument_labels={
     "query": "What's on your mind?"
   }
 )
 
-def Ask_Question(query: str) -> str:
+def Ask_Question(query: str) -> IPython.display.HTML:
+    
+    def print_messages_html(messages):
+      printout = ""
+      for message in messages:
+          if message["role"] == "user":
+              align, left, name = "left", "0%", "You"
+          elif message["role"] == "assistant":
+              align, left, name = "right", "30%", "ChatArticle"
+          printout += f'<div style="position: relative; left: {left}; width: 70%"><b>{name}</b>: {message["content"]}</div>'
+      return printout
+
     key_manager= Key_parser()
     my_keys=key_manager.parsing_keys()
 
@@ -29,9 +48,11 @@ def Ask_Question(query: str) -> str:
     ans= rag_manager.answer_query(query)
 
 
-
-    
-    return ans["answer"]
+    current_message= ans["answer"] 
+    current_message = current_message.strip()
+    messages.append({"role": "user", "content": query})
+    messages.append({"role": "assistant", "content": current_message})
+    return print_messages_html(messages)
 
 
 @funix.funix(
@@ -40,9 +61,7 @@ def Ask_Question(query: str) -> str:
     description="Drag your pdf files"
 ) 
 
-def Index_New_File(               
-    filepaths: List[BytesFile]
-    ) -> IPython.display.Markdown:
+def Index_New_File( filepaths: List[BytesFile]) -> IPython.display.Markdown:
 
     try:
         texts = []
@@ -66,3 +85,12 @@ def Index_New_File(
 
     except Exception as e:
       return "Exception encounted! Indexing failed. "
+    
+
+@funix.funix(print_to_web=True) 
+
+
+def About ()-> str: 
+    
+    message= "This is a rag system developed by Md Rayhanul Islam and Md Obaidur kabir as a part of course project for COMS-579 at Iowa State University."
+    print( message)

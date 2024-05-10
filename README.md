@@ -24,6 +24,9 @@
 - Run command `python upload.py --pdf_file file_name`, where file_name is any pdf file. 
 - For Demo, visit: https://youtu.be/ZFAqBrj08CQ 
 
+-if you face any issue with libgl1
+    -Run Command in Linux `apt-get install libgl1`
+
 -if you face any issue regarding tessaract
     -Run command in Linux `apt-get install tesseract`
     -Run command in Linux `apt-get install tesseract-ocr`

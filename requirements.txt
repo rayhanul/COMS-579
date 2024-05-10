@@ -6,13 +6,13 @@ langchain-experimental
 pillow
 pydantic
 lxml
-pillow
 matplotlib
 tiktoken
 unstructured[all-docs]
 pinecone-client
-funix 
+funix
 fitz 
 IPython 
 PyMuPDF 
 ipywidgets
+

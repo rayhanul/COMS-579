@@ -41,3 +41,7 @@
 - For Demo, visit: https://youtu.be/uUzWpKJequ0 
 
 For example, when I ask "what is fuzzing? it answer: Fuzzing usually refers to automated test input generation for exposing potential software bugs or security vulnerabilities. It is a technique used to identify vulnerabilities in software by providing random or invalid data as input to the system. 
+
+## Deloyed in hugging face. Here is the link: 
+
+Click the url to the browser to see the application live: https://kabir0229-coms-579-space.hf.space

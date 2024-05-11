@@ -53,6 +53,6 @@ For example, when I ask "what is fuzzing? it answer: Fuzzing usually refers to a
 
 ## Deloyed in hugging face. Here is the link: 
 
-Click the url to the browser to see the application live: 
+For the live application, visit any of the following website: 
 - https://rayhan0201-chatarticle.hf.space/ 
 - https://kabir0229-coms-579-space.hf.space

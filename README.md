@@ -42,6 +42,15 @@
 
 For example, when I ask "what is fuzzing? it answer: Fuzzing usually refers to automated test input generation for exposing potential software bugs or security vulnerabilities. It is a technique used to identify vulnerabilities in software by providing random or invalid data as input to the system. 
 
+
+## Running webApp
+
+- Run command `pip install -r requirements.txt` to install all the required packages 
+- Run command `funix application.py` to start the web application. 
+
+- In case you are running using Linux, run command `funix application.py -p 3000`. 
+- For more about funix widget tool, visit http://funix.io/  
+
 ## Deloyed in hugging face. Here is the link: 
 
 Click the url to the browser to see the application live: 

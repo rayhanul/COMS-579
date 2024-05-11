@@ -11,7 +11,7 @@ tiktoken
 unstructured[all-docs]
 pinecone-client
 funix
-fitz 
+# fitz 
 IPython 
 PyMuPDF 
 ipywidgets
